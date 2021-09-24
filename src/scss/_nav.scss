@@ -1,0 +1,60 @@
+@import "./vars";
+
+.nav {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__left {
+    max-width: 150px;
+  }
+
+  &__center {
+    max-width: 700px;
+  }
+
+  &__right {
+    max-width: 300px;
+  }
+
+  &__logo {
+    color: $main-color;
+    text-decoration: none;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: $logo-font;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  &__menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: space-around;
+
+    &-item {
+      padding: 20px 15px;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: lighten($main-color, 60%);
+        color: $light;
+      }
+    }
+  }
+
+  &__img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

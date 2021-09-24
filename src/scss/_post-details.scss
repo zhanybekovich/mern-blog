@@ -1,0 +1,75 @@
+.post-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid transparentize($color: $main-color, $amount: 0.7);
+  border-bottom: 1px solid transparentize($color: $main-color, $amount: 0.7);
+
+  &__categories {
+    position: relative;
+    padding-left: 20px;
+    margin-right: 20px;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 15px;
+      height: 15px;
+      background-image: url("../assets/img/icon-folder.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      content: "";
+    }
+  }
+
+  &__category {
+    margin: 0 5px;
+    font-size: 14px;
+    color: lighten($color: $main-color, $amount: 30%);
+  }
+
+  &__author {
+    position: relative;
+    padding-left: 20px;
+    margin-right: 20px;
+    font-size: 14px;
+    color: lighten($color: $main-color, $amount: 30%);
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 13px;
+      height: 13px;
+      background-image: url("../assets/img/icon-user.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      content: "";
+    }
+  }
+
+  &__date {
+    position: relative;
+    margin-top: 2px;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 19px;
+    color: lighten($color: $main-color, $amount: 30%);
+
+    &::before {
+      position: absolute;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      background-image: url("../assets/img/icon-calendar.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      content: "";
+    }
+  }
+}
