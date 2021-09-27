@@ -1,11 +1,11 @@
 import { Nav } from "./components";
-import { Home } from "./pages";
+import { Write } from "./pages";
 
 function App() {
   return (
     <>
       <Nav />
-      <Home />
+      <Write />
     </>
   );
 }

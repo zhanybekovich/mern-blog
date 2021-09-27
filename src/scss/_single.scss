@@ -1,0 +1,10 @@
+@import "../scss/vars";
+
+.single {
+  margin-top: 60px;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+}
