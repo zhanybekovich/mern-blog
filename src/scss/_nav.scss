@@ -48,6 +48,11 @@
         background-color: lighten($main-color, 60%);
         color: $light;
       }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
   }
 
