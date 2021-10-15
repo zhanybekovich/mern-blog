@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Post = require("../models/Post");
 
+// Update user
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
@@ -28,6 +29,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// Delete User
 router.delete("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     try {
@@ -46,6 +48,17 @@ router.delete("/:id", async (req, res) => {
     }
   } else {
     res.status(401).json("You can not delete");
+  }
+});
+
+// Get User
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
+  } catch (err) {
+    res.status(5000).json(err);
   }
 });
 
