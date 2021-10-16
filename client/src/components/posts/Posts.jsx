@@ -1,12 +1,11 @@
 import { PostItem } from "../index";
 
-function Posts() {
+function Posts({posts}) {
   return (
     <div className="posts">
-      <PostItem />
-      <PostItem />
-      <PostItem />
-      <PostItem />
+      {posts.map((p)=> (
+        <PostItem post={p} key={p._id} />
+      ))}
     </div>
   );
 }

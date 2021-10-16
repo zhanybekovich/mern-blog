@@ -68,6 +68,11 @@
         background-size: contain;
         content: "";
       }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
   }
 

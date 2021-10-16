@@ -4,7 +4,7 @@ import { Nav } from "./components";
 import { Home, Register, Login, Write, Settings, Single } from "./pages";
 
 function App() {
-  const user = true;
+  const user = false;
 
   return (
     <Router>

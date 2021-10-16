@@ -1,18 +1,35 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation } from "react-router";
+
 import { PostDetails } from "../index";
 
 function SinglePost() {
+  const location = useLocation();
+  const path = location.pathname.split('/'[2]);
+  const [post, setPost] = useState({});
+
+  useEffect(()=> {
+    const getPost = async ()=> {
+      const res = await axios.get('/posts/'+ path);
+      setPost(res.data)
+    }
+
+    getPost();
+  }, [path])
   return (
     <article className="single-post">
+      {post.postImg && (
       <img
         className="single-post__img"
-        src="https://images.unsplash.com/photo-1524715324774-b46ab3971a9f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80"
+        src={post.postImg}
         alt=""
       />
+      )}
 
       <header className="single-post__header">
         <h1 className="single-post__title">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo,
-          voluptas!
+          {post.title}
         </h1>
         <div className="single-post__edit-block">
           <button className="single-post__edit-btn single-post__edit">
@@ -40,26 +57,10 @@ function SinglePost() {
       </header>
       <div className="single-post__content">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolore
-          eaque inventore minus neque, accusantium vero voluptatum! Ea, illum.
-          Nulla voluptate quos amet minus facere rem tempore et optio officia
-          delectus deleniti distinctio nemo, nobis totam at rerum quibusdam.
-          Beatae illo dolore temporibus, quasi debitis facilis vel voluptatum
-          rem ex cupiditate eaque deserunt? Cupiditate modi vero excepturi.
-          Tenetur laboriosam voluptates necessitatibus non, quae atque incidunt
-          maxime commodi, rerum nulla quasi unde repellat sunt, provident
-          suscipit earum? Deleniti iusto earum, facilis, reprehenderit nihil
-          labore odio dolores, fugit nisi facere numquam optio corrupti totam
-          molestias! Labore pariatur alias porro nesciunt rem odit modi,
-          provident facilis, culpa esse beatae debitis quis animi sequi optio
-          blanditiis deleniti, quia delectus aspernatur distinctio inventore
-          officiis quasi voluptatem? Quaerat tempora, ea, delectus perspiciatis
-          consequatur nisi harum voluptatum placeat minima, dicta nobis eum quos
-          inventore voluptatibus aspernatur. Temporibus enim dolore deleniti
-          quasi debitis dolores minima ut asperiores explicabo!
+          {post.description}
         </p>
       </div>
-      <PostDetails />
+      <PostDetails post={post} />
     </article>
   );
 }
