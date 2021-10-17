@@ -1,36 +1,29 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router";
-
 import { PostDetails } from "../index";
 
 function SinglePost() {
   const location = useLocation();
-  const path = location.pathname.split('/'[2]);
+  const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
 
-  useEffect(()=> {
-    const getPost = async ()=> {
-      const res = await axios.get('/posts/'+ path);
-      setPost(res.data)
-    }
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/posts/" + path);
+      setPost(res.data);
+    };
 
     getPost();
-  }, [path])
+  }, [path]);
   return (
     <article className="single-post">
       {post.postImg && (
-      <img
-        className="single-post__img"
-        src={post.postImg}
-        alt=""
-      />
+        <img className="single-post__img" src={post.postImg} alt="" />
       )}
 
       <header className="single-post__header">
-        <h1 className="single-post__title">
-          {post.title}
-        </h1>
+        <h1 className="single-post__title">{post.title}</h1>
         <div className="single-post__edit-block">
           <button className="single-post__edit-btn single-post__edit">
             <svg
@@ -56,9 +49,7 @@ function SinglePost() {
         </div>
       </header>
       <div className="single-post__content">
-        <p>
-          {post.description}
-        </p>
+        <p>{post.description}</p>
       </div>
       <PostDetails post={post} />
     </article>

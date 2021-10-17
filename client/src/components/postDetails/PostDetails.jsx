@@ -1,7 +1,6 @@
-
 import { Link } from "react-router-dom";
 
-function PostDetails({post}) {
+function PostDetails({ post }) {
   const categories = post.categories;
 
   return (
@@ -11,17 +10,13 @@ function PostDetails({post}) {
       </Link>
       {categories && (
         <div className="post-details__categories">
-          {categories.map((cat)=> (
+          {categories.map((cat) => (
             <span className="post-details__category" key={cat}>
-              <Link to={`/?cat=${cat}`}>
-                {cat}
-              </Link>
+              <Link to={`/?cat=${cat}`}>{cat}</Link>
             </span>
           ))}
-      </div>
+        </div>
       )}
-      
-
       <time className="post-details__date" dateTime={post.updatedAt}>
         {new Date(post.updatedAt).toDateString()}
       </time>

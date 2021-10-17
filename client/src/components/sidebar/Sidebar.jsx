@@ -1,23 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   const [cats, setCats] = useState([]);
 
-  useEffect(()=> {
-    const getCats = async ()=> {
-      const res = await axios.get('/categories')
-      setCats(res.data)
-    }
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories");
+      setCats(res.data);
+    };
 
     getCats();
-  })
-
+  }, []);
   return (
     <aside className="sidebar">
       <div className="sidebar__item">
@@ -36,14 +35,11 @@ function SideBar() {
       <div className="sidebar__item">
         <h4 className="sidebar__item-title">Categories</h4>
         <ul className="sidebar__categories">
-          {cats.map((cat)=> (
-          <li className="sidebar__categories-item" key={cat.name}>
-            <Link to={`/?cat=${cat.name}`}>
-              {cat.name}
-            </Link>
+          {cats.map((cat) => (
+            <li className="sidebar__categories-item" key={cat.name}>
+              <Link to={`/?cat=${cat.name}`}>{cat.name}</Link>
             </li>
           ))}
-          
         </ul>
       </div>
       <div className="sidebar__item">
