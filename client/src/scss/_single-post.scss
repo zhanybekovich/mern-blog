@@ -20,6 +20,33 @@
     margin: 0 0 20px;
     width: 85%;
     font-size: 24px;
+
+    &-update {
+      width: 90%;
+      padding: 5px 10px;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__description {
+    &-update {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      height: 150px;
+      resize: none;
+      font-family: inherit;
+    }
+  }
+
+  &__btn {
+    border: none;
+    padding: 5px;
+    width: 100px;
+    background-color: $main-color;
+    margin-bottom: 15px;
+    color: $light;
+    border-radius: 4px;
   }
 
   &__edit-block {

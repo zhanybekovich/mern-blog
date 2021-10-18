@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
-function Nav() {
-  const user = false;
+function Header() {
+  const { user, dispatch } = useContext(Context);
+  const publicFolder = "http://localhost:5000/images/";
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
 
   return (
     <nav className="nav">
@@ -26,16 +33,20 @@ function Nav() {
               <li className="nav__menu-item">
                 <Link to="/write">Write</Link>
               </li>
-              <li className="nav__menu-item">{user && "Logout"}</li>
+              <li className="nav__menu-item" onClick={handleLogout}>
+                {user && "Logout"}
+              </li>
             </ul>
           </div>
           <div className="nav__right">
             {user ? (
-              <img
-                className="nav__img"
-                src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt=""
-              />
+              <Link to="/settings">
+                <img
+                  className="nav__img"
+                  src={publicFolder + user.profileImg}
+                  alt=""
+                />
+              </Link>
             ) : (
               <ul className="nav__menu">
                 <li className="nav__menu-item">
@@ -53,4 +64,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Header;

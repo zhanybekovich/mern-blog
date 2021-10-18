@@ -58,11 +58,11 @@
     border-radius: 4px;
     border: none;
     background-color: $main-color;
-    color: $light;
-    text-transform: uppercase;
     text-decoration: none;
     text-align: center;
     line-height: 15px;
+    color: $light;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s ease;
 
@@ -73,5 +73,10 @@
     &:active {
       transform: scale(0.95);
     }
+  }
+
+  &__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 }

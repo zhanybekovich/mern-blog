@@ -1,10 +1,43 @@
-import React from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { Context } from "../../context/Context";
 
 function Write() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [file, setFile] = useState(null);
+  const { user } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newPost = {
+      username: user.username,
+      title,
+      description,
+      categories,
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.postImg = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.post("/posts", newPost);
+      window.location.replace("/post/" + res.data._id);
+    } catch (err) {}
+  };
+
   return (
     <div className="write">
       <div className="container">
-        <form className="write__form">
+        {file && <img src={URL.createObjectURL(file)} alt="" />}
+        <form className="write__form" onSubmit={handleSubmit}>
           <div className="write__form-group">
             <label className="write__file-label" htmlFor="fileInput">
               <svg
@@ -17,22 +50,32 @@ function Write() {
               </svg>
               Choose Image
             </label>
-            <img
-              src="https://images.unsplash.com/photo-1632188733972-0b12f9901e47?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80"
-              alt=""
+
+            <input
+              type="file"
+              id="fileInput"
+              className="write__file-input"
+              onChange={(e) => setFile(e.target.files[0])}
             />
-            <input type="file" id="fileInput" className="write__file-input" />
             <input
               type="text"
               placeholder="Title"
               className="write__input"
               autoFocus={true}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Category"
+              className="write__input"
+              onChange={(e) => setCategories(e.target.value)}
             />
           </div>
           <div className="write__form-group">
             <textarea
               className="write__input write__textarea"
               placeholder="Your content"
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <button className="write__publish-btn" type="submit">
