@@ -37,6 +37,7 @@
     padding-left: 20px;
     margin-right: 20px;
     font-size: 14px;
+    text-transform: capitalize;
     color: lighten($color: $main-color, $amount: 30%);
 
     &::before {

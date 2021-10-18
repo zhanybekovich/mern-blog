@@ -1,13 +1,13 @@
 function Header() {
   return (
-    <div className="banner">
+    <header className="header">
       <div className="container">
-        <div className="banner__content">
+        <div className="header__content">
           <h2>Blogger Classic Design</h2>
           <p>Welcome to My Blog</p>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
